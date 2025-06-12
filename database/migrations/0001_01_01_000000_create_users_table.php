@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('role_id')->default(3); // Default to 'Wartawan'
+            $table->enum('status', ['active', 'pending', 'suspended'])->default('pending');
+            $table->string('profile_picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
