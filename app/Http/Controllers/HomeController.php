@@ -22,14 +22,8 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
-        // Mengambil semua kategori yang memiliki setidaknya satu postingan yang sudah publish
-        $categories = Category::whereHas('posts', function ($query) {
-                $query->where('status', 'published');
-            })
-            ->withCount(['posts' => function ($query) {
-                $query->where('status', 'published');
-            }])
-            ->get();
+        // Mengambil semua kategori untuk ditampilkan di filter
+        $categories = Category::all();
 
         // Mengirim kedua data ke view
         return view('home', compact('posts', 'categories'));
@@ -67,14 +61,8 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
-        // Mengambil semua kategori untuk ditampilkan di filter (sama seperti di index)
-        $categories = Category::whereHas('posts', function ($query) {
-                $query->where('status', 'published');
-            })
-            ->withCount(['posts' => function ($query) {
-                $query->where('status', 'published');
-            }])
-            ->get();
+        // Mengambil semua kategori
+        $categories = Category::all();
 
         // Mengirim data ke view yang sama dengan homepage
         return view('home', compact('posts', 'categories'));

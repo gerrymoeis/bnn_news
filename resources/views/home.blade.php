@@ -58,12 +58,12 @@
                         </div>
                         <div class="card-footer bg-white">
                             <small class="text-muted">
-                                Oleh {{ $post->author->name }}
+                                Oleh {{ $post->author->name ?? 'Penulis Tidak Dikenal' }}
                                 @if($post->editor)
                                     <span class="text-success">&#10003; Direview oleh {{ $post->editor->name }}</span>
                                 @endif
                                 <br>
-                                Kategori: <span class="badge bg-primary">{{ $post->category->name }}</span>
+                                Kategori: <span class="badge bg-primary">{{ $post->category->name ?? 'Tanpa Kategori' }}</span>
                             </small>
                         </div>
                     </div>
